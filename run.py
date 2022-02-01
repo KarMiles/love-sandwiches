@@ -128,7 +128,6 @@ def get_last_5_entries_sales():
     # row = sales.row_values(3)
     # print(row)
 
-
     columns = []
     for ind in range(1, 7):
         column = sales.col_values(ind)
@@ -152,6 +151,15 @@ def calculate_stock_data(data):
 
     return new_stock_data
 
+# Coding challenge:
+def get_stock_values(data):
+    
+    headings = SHEET.worksheet("stock").get_all_values()[0]
+    dictionary = {headings[i]: data[i] for i in range(len(headings))}
+    # res = {test_keys[i]: test_values[i] for i in range(len(test_keys))}
+
+    return dictionary
+
 
 def main():
     """
@@ -166,8 +174,26 @@ def main():
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, "stock")
 
+    print("Make the following numbers of sandwiches for next market:\n")
+    stock_values = get_stock_values(stock_data)
+    print(stock_values)
+
+
 print("Welcome to Love Sandwiches Data Automation.")
 main()
 
+# Coding challenge:
+# Write you code below this comment
 
+# def get_stock_values(data):
     
+#     headings = SHEET.worksheet("stock").get_all_values()[0]
+#     dictionary = {headings[i]: data[i] for i in range(len(headings))}
+#     # res = {test_keys[i]: test_values[i] for i in range(len(test_keys))}
+
+#     return dictionary
+
+# print("Make the following numbers of sandwiches for next market:\n")
+# stock_values = get_stock_values(stock_data)
+# print(stock_values)
+# end of challenge code
